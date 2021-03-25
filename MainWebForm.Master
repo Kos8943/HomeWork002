@@ -1,0 +1,178 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainWebForm.master.cs" Inherits="HomeWork002.MainWebForm" %>
+
+<%@ Register Src="~/Headder1.ascx" TagPrefix="uc1" TagName="Headder1" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mailArea {
+            height: 100%;
+        }
+
+        .titleArea {
+            display: flex;
+            height: 12%;
+        }
+
+        .nameArea {
+            padding: 1%;
+            height: 100%;
+            width: 18%;
+            background-color: rgb(52, 58, 70);
+            text-align: center;
+            position: relative;
+        }
+
+        .namePostion {
+            position: absolute;
+            bottom: 33%;
+            left: 50%;
+            transform: translate(-50%);
+            font-size: 20px;
+        }
+
+        .tableNameArea {
+            padding: 1%;
+            width: 82%;
+            height: 100%;
+            background-color: rgb(254,254,254);
+            position: relative;
+        }
+
+        .tableNamePosition {
+            position: absolute;
+            bottom: 33%;
+            left: 2%;
+            font-size: 20px;
+        }
+
+        .secondArea {
+            display: flex;
+            width: 100%;
+            height: 75%;
+        }
+
+        .title {
+            padding: 1.5% 1% 1% 1.1%;
+            width: 18%;
+            background-color: rgb(43,50,60);
+            position: relative;
+        }
+
+        .tableArea {
+            padding: 1.5% 1% 1% 1.5%;
+            width: 82%;
+            position: relative;
+            background-color: rgb(243,244,248);
+        }
+
+
+        .tableList {
+            text-align: center;
+            margin-bottom: 8%;
+            font-size: 22px;
+            border-bottom:3px solid rgb(41,55,65);
+            
+        }
+
+            .tableList a {
+                text-decoration: none;
+                color:rgb(238,238,238);
+            }
+
+        .tableContent{
+            /*border: 1px solid rgb(255,255,226);*/
+            height: 88%;
+            border-radius:2px;
+            background-color:rgb(254,254,254)
+        }
+
+
+        .footerArea {
+            height: 13%;
+            width: 100%;   
+            
+        }
+
+        .footerContent{
+            height:100%;
+            width:100%;
+            background-color:rgb(90,102,103);
+        }
+
+        .footerFirstArea{
+            padding:0 20% 0  5%;
+            width:100%;
+            background-color:rgb(90,102,103);
+            color:rgb(238,238,238);
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <form class="mailArea" id="form1" runat="server">
+
+        <div class="titleArea">
+            <uc1:Headder1 runat="server" id="Headder1" />           
+        </div>
+
+        <div class="secondArea">
+            <div class="title">
+                <div class="tableList"><a href="https://localhost:44357/Drone_Detail.aspx">無人機管理</a></div>
+                <div class="tableList"><a href="https://localhost:44357/Drone_Fixed.aspx">無人機維修紀錄</a></div>
+                <div class="tableList"><a href="https://localhost:44357/Drone_Detail.aspx">客戶資料管理</a></div>
+                <div class="tableList"><a href="https://localhost:44357/Drone_Battery.aspx">電池管理</a></div>
+                <div class="tableList"><a href="https://localhost:44357/Drone_Detail.aspx">無人機出勤紀錄</a></div>
+                <div class="tableList"><a href="https://localhost:44357/Drone_Detail.aspx">使用者管理</a></div>
+            </div>
+            <div class="tableArea">
+                <div class="tableContent" style="overflow:scroll;">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                </div>
+                
+            </div>
+        </div>
+
+        <footer class="footerArea">
+            <div class="footerContent">
+                <div class="footerFirstArea d-flex justify-content-between">
+                    <div>宥倍實業拱份有限公司</div>
+                    <div><a href="https://localhost:44357/WebForm3.aspx">隱私權宣告連結</a></div>
+                </div>
+                <div class="footerFirstArea d-flex justify-content-between">
+                    <div>電子郵件: XXXXX@XXXXX.com</div>
+                    <div><a href="https://localhost:44357/WebForm4.aspx">資料保護宣言</a></div>
+                </div>
+                <div class="footerFirstArea d-flex ">
+                    <div style="margin-right:10%;">高雄辦公室: 07-12345678</div>
+                    <div>地址: XXXXXXXXX</div>
+                </div>
+                <div class="footerFirstArea d-flex ">
+                    <div style="margin-right:10%;">台北辦公室: 02-12345678</div>
+                    <div>地址: XXXXXXXXX</div>
+                </div>
+            </div>
+
+            
+        </footer>
+
+    </form>
+</body>
+</html>
