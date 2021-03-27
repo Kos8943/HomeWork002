@@ -67,7 +67,7 @@
 
             <div class="bottomArea d-flex justify-content-between">
                 <asp:Button ID="btnUpdate" runat="server" Text="確認" OnClick="Create_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="取消" />
+                <asp:Button ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click"/>
             </div>
 
         </div>

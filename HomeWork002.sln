@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork002", "HomeWork002.csproj", "{BE4EC869-D4E6-4D27-B70E-5D9015E7D3CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YUBAY_Drone", "YUBAY_Drone.csproj", "{BE4EC869-D4E6-4D27-B70E-5D9015E7D3CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

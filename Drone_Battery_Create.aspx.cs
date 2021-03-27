@@ -30,7 +30,7 @@ namespace HomeWork002
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Create_Click(object sender, EventArgs e)
@@ -39,19 +39,19 @@ namespace HomeWork002
             string name = this.TextBatteryName.Text;
             string Status = this.TextBatteryStatus.Text;
             string StopReason = this.TextStop.Text;
-            
 
-            if(id == null)
+
+            if (id == null)
             {
                 ConnectDB.InsertIntoDroneBattery(name, Status, StopReason);
-                Response.Redirect("Drone_Battery_Create.aspx");
+                Response.Redirect("Drone_Battery.aspx");
             }
 
             if (id != null)
             {
 
                 ConnectDB.UpDateBattery(id, name, Status, StopReason);
-                Response.Redirect("Drone_Battery_Create.aspx");
+                Response.Redirect("Drone_Battery.aspx");
             }
         }
 
@@ -64,6 +64,11 @@ namespace HomeWork002
 
             ConnectDB.UpDateBattery(id, name, Status, StopReason);
             //Response.Redirect("Drone_Detail.aspx");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Drone_Battery.aspx");
         }
     }
 }

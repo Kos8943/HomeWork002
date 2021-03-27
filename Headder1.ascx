@@ -11,5 +11,4 @@
 
 <div class="tableNameArea d-flex justify-content-between">
     <div runat="server" class="tableNamePosition" id="tableName">tableNameArea</div>
-    <div style="position: absolute; left:95%;bottom:33%;"><a href="LoginPage.aspx">登入</a></div>
 </div>

@@ -80,6 +80,7 @@
 
         .btnLogin{
             width:278px;
+          
             height:38px;
             font-family: 'Segoe UI',Arial,'Microsoft Jhenghei',sans-serif;
             background-color:rgb(5,139,233);

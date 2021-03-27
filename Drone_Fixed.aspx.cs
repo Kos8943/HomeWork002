@@ -51,7 +51,7 @@ namespace HomeWork002
 
         protected void CreateDate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Drone_Fix_CreatData.aspx");
+            Response.Redirect("Drone_Fix_CreateData.aspx");
         }
     }
 }

@@ -99,6 +99,7 @@
 
         .tdFeild{
             padding-left:20px;
+            height:48px;
         }
 
     </style>
@@ -108,10 +109,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="toolArea">
-        <div style="display: flex; padding-top: 2px; padding-right: 20px; padding-left: 20px;">
+        <div class="d-flex justify-content-between" style="display: flex; padding-top: 2px; padding-right: 20px; padding-left: 20px;">
             <asp:Button ID="CreateDate" runat="server" Text="新增" Style="margin-right: 20px;" OnClick="CreateDate_Click"/>
 
-            <div style="position: absolute; left: 75%;">
+            <div>
                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                 <asp:Button ID="Button3" runat="server" Text="查詢" />
             </div>

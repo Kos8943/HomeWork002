@@ -78,6 +78,7 @@
     <Content Include="Imgs\news20171201_001.png" />
     <Content Include="LoginPage.aspx" />
     <Content Include="Main.css" />
+    <Content Include="ucFooter.ascx" />
     <Content Include="ucTool.ascx" />
     <Content Include="Web.config" />
     <Content Include="Drone_Detail.aspx" />
@@ -140,6 +141,13 @@
       <DependentUpon>MainWebForm.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucFooter.ascx.cs">
+      <DependentUpon>ucFooter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucFooter.ascx.designer.cs">
+      <DependentUpon>ucFooter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ucTool.ascx.cs">
       <DependentUpon>ucTool.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
