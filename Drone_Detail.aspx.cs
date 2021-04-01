@@ -10,20 +10,26 @@ namespace HomeWork002
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        public static string HeaderTableName { get; set; }
+
         protected void Page_Init(object sender, EventArgs e)
         {
-            //Headder1 headder1 = new Headder1();
-            //headder1.SetLtHeader = "無人機管理表";
+            
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //this.Master.FindControl("Headder1").FindControl("txtTableName");
+            Headder1.TableName = "無人機管理表";
+            //判定是否登入
+            //bool Logined = LoginHelper.HasLogined();
+            //if (!Logined)
+            //{
+            //    Response.Redirect("LoginPage.aspx");
+            //}
+
             if (!IsPostBack)
             {
                 
-                DataTable dt = ConnectDB.ReadDroneDetail();
+                DataTable dt = ConnectDB.ReadDroneDetail();               
                 this.DroneDetailRepeater.DataSource = dt;
                 this.DroneDetailRepeater.DataBind();
             }

@@ -14,9 +14,33 @@ namespace HomeWork002
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Drone_Detail.aspx");
+            string Account = this.txtAccount.Text;
+            string Password = this.txtPassword.Text;
+
+            if (Account == "" || Password == "")
+            {
+                this.ltErrorMsg.Text = "請輸入帳號密碼";
+                this.ltErrorMsg.Visible = true;
+                return;
+            }
+
+
+            bool CanLogin = LoginHelper.TryLogin(Account, Password);
+
+            if (CanLogin)
+            {
+                Response.Redirect("Drone_Detail.aspx");
+            }
+            else
+            {                
+                this.ltErrorMsg.Text = "帳號或密碼錯誤";
+                this.ltErrorMsg.Visible = true;
+                //Response.Redirect("LoginPage.aspx");
+            }
+
+            
         }
     }
 }

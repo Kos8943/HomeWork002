@@ -9,7 +9,7 @@ namespace HomeWork002
 {
     public partial class Headder1 : System.Web.UI.UserControl
     {
-        public string Path { get; set; }
+        public static string TableName { get; set; }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -18,12 +18,13 @@ namespace HomeWork002
 
         protected void Page_Load(object sender, EventArgs e)
         {
-             
-            if(Request.RawUrl == "/Drone_Detail.aspx")
-            {
-                this.txtTableName.Text = "無人機資料表";
-            }
-            
+            this.txtTableName.Text = TableName;
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            LoginHelper.Logout();
+            Response.Redirect("LoginPage.aspx");
         }
     }
 }

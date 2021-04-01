@@ -18,5 +18,20 @@ namespace HomeWork002
         {
 
         }
+
+        protected void lastPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void nextPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

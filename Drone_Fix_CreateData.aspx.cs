@@ -35,7 +35,12 @@ namespace HomeWork002
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //判定是否登入
+            //bool Logined = LoginHelper.HasLogined();
+            //if (!Logined)
+            //{
+            //    Response.Redirect("LoginPage.aspx");
+            //}
         }
 
         protected void Create_Click(object sender, EventArgs e)

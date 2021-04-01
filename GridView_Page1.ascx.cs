@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace HomeWork002
 {
-    public partial class WebForm4 : System.Web.UI.Page
+    public partial class GridView_Page1 : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //判定是否登入
-            //bool Logined = LoginHelper.HasLogined();
-            //if (!Logined)
-            //{
-            //    Response.Redirect("LoginPage.aspx");
-            //}
+
         }
     }
 }

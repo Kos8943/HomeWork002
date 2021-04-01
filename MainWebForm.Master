@@ -54,14 +54,13 @@
         }
 
         .tableNamePosition {
-           /* position: absolute;
+            /* position: absolute;
             bottom: 33%;
             left: 2%;*/
-            display:table-cell; 
-            vertical-align:bottom;
+            display: table-cell;
+            vertical-align: bottom;
             font-size: 40px;
-            padding-left:20px;
-            
+            padding-left: 20px;
         }
 
         .secondArea {
@@ -89,40 +88,48 @@
             text-align: center;
             margin-bottom: 8%;
             font-size: 22px;
-            border-bottom:3px solid rgb(41,55,65);
-            
+            border-bottom: 3px solid rgb(41,55,65);
         }
 
             .tableList a {
                 text-decoration: none;
-                color:rgb(238,238,238);
+                color: rgb(238,238,238);
             }
 
-        .tableContent{
+        .tableContent {
             /*border: 1px solid rgb(255,255,226);*/
             height: 88%;
-            border-radius:2px;
-            background-color:rgb(254,254,254)
+            border-radius: 2px;
+            background-color: rgb(254,254,254)
         }
 
 
         .footerArea {
             height: 13%;
-            width: 100%;   
-            
+            width: 100%;
         }
 
-        .footerContent{
-            height:100%;
-            width:100%;
-            background-color:rgb(90,102,103);
+        .footerContent {
+            height: 100%;
+            width: 100%;
+            background-color: rgb(90,102,103);
         }
 
-        .footerFirstArea{
-            padding:0 20% 0  5%;
-            width:100%;
-            background-color:rgb(90,102,103);
-            color:rgb(238,238,238);
+        .footerFirstArea {
+            padding: 0 20% 0 5%;
+            width: 100%;
+            background-color: rgb(90,102,103);
+            color: rgb(238,238,238);
+        }
+
+        .pageButton {
+            padding: 0;
+            margin-right: 15px;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 20px;
+            color: Highlight;
         }
     </style>
 
@@ -133,7 +140,7 @@
     <form class="mailArea" id="form1" runat="server">
 
         <div class="titleArea">
-            <uc1:Headder1 runat="server" id="Headder1"/>           
+            <uc1:Headder1 runat="server" ID="Headder1" />
         </div>
 
         <div class="secondArea">
@@ -146,13 +153,25 @@
                 <div class="tableList"><a href="https://localhost:44357/Drone_Detail.aspx">使用者管理</a></div>
             </div>
             <div class="tableArea">
-                <div class="tableContent" style="overflow:scroll;">
+                <div class="tableContent" style="overflow: scroll;">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
-                    
-                </div>  
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div>
+                    <asp:Button ID="lastPage" CssClass="pageButton" runat="server" Text="上一頁" OnClick="lastPage_Click"/>
+                    <asp:Button ID="Button1" CssClass="pageButton" runat="server" Text="1" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button2" CssClass="pageButton" runat="server" Text="2" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button3" CssClass="pageButton" runat="server" Text="3" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button4" CssClass="pageButton" runat="server" Text="4" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button5" CssClass="pageButton" runat="server" Text="5" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button6" CssClass="pageButton" runat="server" Text="6" OnClick="Button1_Click"/>
+                    <asp:Button ID="Button7" CssClass="pageButton" runat="server" Text="7" OnClick="Button1_Click"/>
+                    <asp:Button ID="nextPage" CssClass="pageButton" runat="server" Text="下一頁" OnClick="nextPage_Click"/>
+                </div>
+
+
             </div>
-        </div>        
+        </div>
 
     </form>
 </body>

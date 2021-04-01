@@ -12,6 +12,14 @@ namespace HomeWork002
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Headder1.TableName = "無人機維修紀錄";
+            //判定是否登入
+            //bool Logined = LoginHelper.HasLogined();
+            //if (!Logined)
+            //{
+            //    Response.Redirect("LoginPage.aspx");
+            //}
+
             if (!IsPostBack)
             {
                 DataTable dt = ConnectDB.ReadDroneFixed();

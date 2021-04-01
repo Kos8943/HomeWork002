@@ -72,6 +72,7 @@
     <Content Include="Drone_Fixed.aspx" />
     <Content Include="Drone_Fix_CreateData.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="GridView_Page1.ascx" />
     <Content Include="Headder1.ascx" />
     <Content Include="Imgs\iconfinder_Safety01_928417.svg" />
     <Content Include="Imgs\iconfinder_User_5431752.svg" />
@@ -119,6 +120,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GridView_Page1.ascx.cs">
+      <DependentUpon>GridView_Page1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GridView_Page1.ascx.designer.cs">
+      <DependentUpon>GridView_Page1.ascx</DependentUpon>
     </Compile>
     <Compile Include="Headder1.ascx.cs">
       <DependentUpon>Headder1.ascx</DependentUpon>

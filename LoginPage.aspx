@@ -74,7 +74,7 @@
         .Line{
             width:100%;
             border-bottom:1px solid rgb(250,250,250);
-            margin-bottom:16px;
+            margin-bottom:13px;
             opacity:.3;
         }
 
@@ -92,6 +92,14 @@
             outline:none;
         }
 
+        .errorMsg{
+            margin:0;
+            margin-top:5px;
+            color:white;
+            font-size:18px;
+            display:block;
+        }
+
         
     </style>
 </head>
@@ -100,18 +108,21 @@
 
         <div class="LoginArea">
             <div class="tittle">YUBAY</div>
-            <div class="InputArea">
-                <div class="account">
+            <div class="InputArea">                
+                <div class="account">                    
                     <asp:Image src="./Imgs/iconfinder_User_5431752.svg" ID="Image1" runat="server" class="ImgSize" />
-                    <asp:TextBox ID="account" autocomplete="off" runat="server" CssClass="InputSize"></asp:TextBox>
+                    <asp:TextBox ID="txtAccount" autocomplete="off" runat="server" CssClass="InputSize"></asp:TextBox>
                 </div>
                 <div class="Line"></div>
                 <div class="account">
                     <asp:Image src="./Imgs/iconfinder_Safety01_928417.svg" ID="Image2" runat="server" class="ImgSize" />
-                    <asp:TextBox ID="password" autocomplete="off" TextMode="Password" runat="server" CssClass="InputSize"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" autocomplete="off" TextMode="Password" runat="server" CssClass="InputSize"></asp:TextBox>
                 </div>
                 <div class="Line"></div>
-                <asp:Button ID="Button1" runat="server" Text="登入" CssClass="btnLogin" OnClick="Button1_Click"/>
+                
+                <%--<p class="errorMsg" id="errorMsg"></p>--%>
+                <asp:Button ID="btnLogin" runat="server" Text="登入" CssClass="btnLogin" OnClick="btnLogin_Click"/>
+                <asp:Label ID="ltErrorMsg" class="errorMsg" runat="server" Text="" Visible="false"></asp:Label>
             </div>
         </div>
     </form>

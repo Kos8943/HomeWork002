@@ -14,7 +14,7 @@
         <asp:Literal ID="txtTableName" runat="server"></asp:Literal>
     </div>
     <div>
-        <asp:Button ID="Button1" runat="server" Text="登出" />
+        <asp:Button ID="btnLogin" runat="server" Text="登出" OnClick="btnLogin_Click"/>
     </div>
 
 
