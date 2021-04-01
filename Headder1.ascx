@@ -10,5 +10,13 @@
 </div>
 
 <div class="tableNameArea d-flex justify-content-between">
-    <div runat="server" class="tableNamePosition" id="tableName">tableNameArea</div>
+    <div runat="server" class="tableNamePosition" id="tableName">
+        <asp:Literal ID="txtTableName" runat="server"></asp:Literal>
+    </div>
+    <div>
+        <asp:Button ID="Button1" runat="server" Text="登出" />
+    </div>
+
+
+
 </div>

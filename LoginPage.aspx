@@ -103,12 +103,12 @@
             <div class="InputArea">
                 <div class="account">
                     <asp:Image src="./Imgs/iconfinder_User_5431752.svg" ID="Image1" runat="server" class="ImgSize" />
-                    <asp:TextBox ID="account" runat="server" CssClass="InputSize"></asp:TextBox>
+                    <asp:TextBox ID="account" autocomplete="off" runat="server" CssClass="InputSize"></asp:TextBox>
                 </div>
                 <div class="Line"></div>
                 <div class="account">
                     <asp:Image src="./Imgs/iconfinder_Safety01_928417.svg" ID="Image2" runat="server" class="ImgSize" />
-                    <asp:TextBox ID="password" runat="server" CssClass="InputSize"></asp:TextBox>
+                    <asp:TextBox ID="password" autocomplete="off" TextMode="Password" runat="server" CssClass="InputSize"></asp:TextBox>
                 </div>
                 <div class="Line"></div>
                 <asp:Button ID="Button1" runat="server" Text="登入" CssClass="btnLogin" OnClick="Button1_Click"/>

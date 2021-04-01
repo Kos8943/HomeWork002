@@ -54,10 +54,14 @@
         }
 
         .tableNamePosition {
-            position: absolute;
+           /* position: absolute;
             bottom: 33%;
-            left: 2%;
-            font-size: 20px;
+            left: 2%;*/
+            display:table-cell; 
+            vertical-align:bottom;
+            font-size: 40px;
+            padding-left:20px;
+            
         }
 
         .secondArea {
@@ -129,7 +133,7 @@
     <form class="mailArea" id="form1" runat="server">
 
         <div class="titleArea">
-            <uc1:Headder1 runat="server" id="Headder1" />           
+            <uc1:Headder1 runat="server" id="Headder1"/>           
         </div>
 
         <div class="secondArea">

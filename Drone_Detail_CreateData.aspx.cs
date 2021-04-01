@@ -22,7 +22,7 @@ namespace HomeWork002
                 return;
             }
 
-            this.TextDroneName.Text = dt.Rows[0]["DroneName"].ToString();
+            this.TextDroneName.Text = dt.Rows[0]["Drone_ID"].ToString();
             this.TextManufacturer.Text = dt.Rows[0]["Manufacturer"].ToString();
             this.TextWeightLoad.Text = dt.Rows[0]["WeightLoad"].ToString();
             this.TextStatus.Text = dt.Rows[0]["Status"].ToString();
@@ -57,7 +57,7 @@ namespace HomeWork002
 
             if (id != null)
             {
-                ConnectDB.UpDateDroneDetail(id, name, Manufacturer, WeightLoad, Status, StopReason, Operator);
+                ConnectDB.UpDateDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
                 Response.Redirect("Drone_Detail.aspx");
             }
 

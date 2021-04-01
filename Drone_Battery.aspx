@@ -105,7 +105,7 @@
                <%-- <th class="feildColor checkBoxFeild">
                     <asp:CheckBox ID="CheckAllBox" runat="server" />
                 </th>--%>
-                <th class="feildColor sidFeild">排序</th>
+                <%--<th class="feildColor sidFeild">排序</th>--%>
                 <th class="feildColor BatteryNameFeild ">電池編號</th>
                 <th class="feildColor statusFeild">使用狀態</th>
                 <th class="feildColor stopFeild">故障原因</th>
@@ -118,15 +118,15 @@
                         <%--<td class="tdFeild">
                             <asp:CheckBox ID="CheckBox" runat="server" />
                         </td>--%>
-                        <td class="tdFeild"><%# Eval("sid") %></td>
-                        <td class="tdFeild"><%# Eval("battery_Name") %></td>
+                        <%--<td class="tdFeild"><%# Eval("sid") %></td>--%>
+                        <td class="tdFeild"><%# Eval("Battery_ID") %></td>
                         <td class="tdFeild"><%# Eval("status") %></td>
                         <td class="tdFeild"><%# Eval("stopReason") %></td>           
                         <td class="tdFeild">
-                            <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("sid") %>' />
+                            <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("Battery_ID") %>' />
                         </td>
                         <td class="tdFeild">
-                            <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("sid") %>' />
+                            <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("Battery_ID") %>' />
                         </td>
                     </tr>
                 </ItemTemplate>

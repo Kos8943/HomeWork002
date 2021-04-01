@@ -110,8 +110,17 @@
             <asp:Button ID="btnCreate" runat="server" Text="新增" style="margin-right:20px;" OnClick="btnCreate_Click"/>
             <%--<asp:Button ID="Button2" runat="server" Text="刪除" />--%>
             <div>
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                <asp:Button ID="Button3" runat="server" Text="查詢" />
+                <asp:DropDownList ID="DropDownListSearch" runat="server">
+                    <asp:ListItem Value="Drone_ID" Text="無人機編號"></asp:ListItem>
+                    <asp:ListItem Value="Manufacturer" Text="製造商"></asp:ListItem>
+                    <asp:ListItem Value="WeightLoad" Text="最大起飛重量"></asp:ListItem>
+                    <asp:ListItem Value="Status" Text="使用狀態"></asp:ListItem>
+                    <asp:ListItem Value="StopReason" Text="停用原因"></asp:ListItem>
+                    <asp:ListItem Value="operator" Text="負責人"></asp:ListItem>
+
+                </asp:DropDownList>
+                <asp:TextBox ID="textKeyWord" runat="server"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" Text="查詢" OnClick="btnSearch_Click"/>
             </div>
         </div>
     </div>
@@ -123,7 +132,6 @@
             <%--<th class="feildColor checkBoxFeild">
                 <asp:CheckBox ID="CheckAllBox" runat="server" />
             </th>--%>
-            <th class="feildColor sidFeild">排序</th>
             <th class="feildColor DroneNameFeild">植保機編號</th>
             <th class="feildColor makedFeild">廠商</th>
             <th class="feildColor weightLoadFeild">起飛總乘載重量</th>
@@ -141,18 +149,17 @@
                     <%--<td class="tdFeild">
                         <asp:CheckBox ID="CheckBox" runat="server" />
                     </td>--%>
-                    <td class="tdFeild"><%# Eval("DroneDetail_ID") %></td>
-                    <td class="tdFeild"><%# Eval("DroneName") %></td>
+                    <td class="tdFeild"><%# Eval("Drone_ID") %></td>
                     <td class="tdFeild"><%# Eval("Manufacturer") %></td>
                     <td class="tdFeild"><%# Eval("WeightLoad") %></td>
                     <td class="tdFeild"><%# Eval("Status") %></td>
                     <td class="tdFeild"><%# Eval("StopReason") %></td>
                     <td class="tdFeild"><%# Eval("operator") %></td>
                     <td class="tdFeild">
-                        <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("DroneDetail_ID") %>'/>
+                        <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("Drone_ID") %>'/>
                     </td>
                     <td class="tdFeild">
-                        <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("DroneDetail_ID") %>'/>
+                        <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("Drone_ID") %>'/>
                     </td>
                 </tr>
             </ItemTemplate>

@@ -47,8 +47,13 @@
             <div class="tutleLine"></div>
 
             <div class="inputMargin d-flex justify-content-between">
-                <span>維修設備:</span>
+                <span>無人機編號:</span>
                 <asp:TextBox ID="TextItemName" runat="server"></asp:TextBox>
+            </div>
+
+            <div class="inputMargin d-flex justify-content-between">
+                <span>維修部件:</span>
+                <asp:TextBox ID="TextChange" runat="server"></asp:TextBox>
             </div>
 
             <div class="inputMargin d-flex justify-content-between">
@@ -69,12 +74,7 @@
             <div class="inputMargin d-flex justify-content-between">
                 <span>送修原因:</span>
                 <asp:TextBox ID="TextStopReason" runat="server"></asp:TextBox>
-            </div>
-
-            <div class="inputMargin d-flex justify-content-between">
-                <span>更換部件:</span>
-                <asp:TextBox ID="TextChange" runat="server"></asp:TextBox>
-            </div>
+            </div>           
 
             <div class="inputMargin d-flex justify-content-between">
                 <span>備註:</span>

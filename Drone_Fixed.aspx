@@ -127,12 +127,12 @@
                     <asp:CheckBox ID="CheckAllBox" runat="server" />
                 </th>--%>
                 <th class="feildColor sidFeild">排序</th>
-                <th class="feildColor FixNameFeild ">送修設備</th>
+                <th class="feildColor FixNameFeild ">無人機編號</th>
+                <th class="feildColor ChangeFeild">維修部件</th>
                 <th class="feildColor StopDateFeild">故障日期</th>
                 <th class="feildColor SendDateFeild">送修日期</th>
                 <th class="feildColor FixFeild">維修廠商</th>
-                <th class="feildColor StopReasonFeild">故障原因</th>
-                <th class="feildColor ChangeFeild">更換部件</th>
+                <th class="feildColor StopReasonFeild">故障原因</th>             
                 <th class="feildColor RemarksFeild">備註</th>
                 <th class="feildColor UpDateFeild">修改</th>
                 <th class="feildColor DeleteFeild">刪除</th>
@@ -146,20 +146,20 @@
                         <%--<td class="tdFeild">
                             <asp:CheckBox ID="CheckBox" runat="server" />
                         </td>--%>
-                        <td class="tdFeild"><%# Eval("sid") %></td>
-                        <td class="tdFeild"><%# Eval("ItemName") %></td>
+                        <td class="tdFeild"><%# Eval("Sid") %></td>
+                        <td class="tdFeild"><%# Eval("Drone_ID") %></td>
+                        <td class="tdFeild"><%# Eval("FixChange") %></td>
                         <td class="tdFeild"><%# Eval("StopDate","{0:yyyy-MM-dd}") %></td>
                         <td class="tdFeild"><%# Eval("SendDate","{0:yyyy-MM-dd}") %></td>
                         <td class="tdFeild"><%# Eval("FixVendor") %></td>
-                        <td class="tdFeild"><%# Eval("StopReason") %></td>
-                        <td class="tdFeild"><%# Eval("FixChange") %></td>
+                        <td class="tdFeild"><%# Eval("StopReason") %></td>                      
                         <td class="tdFeild"><%# Eval("Remarks") %></td> 
                         <td class="tdFeild">
-                            <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("sid") %>'/>
+                            <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("Sid") %>'/>
                          
                         </td>
                         <td class="tdFeild">
-                            <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("sid") %>'/>
+                            <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("Sid") %>'/>
                            
                         </td>
                         

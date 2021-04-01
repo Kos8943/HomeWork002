@@ -21,7 +21,7 @@ namespace HomeWork002
                 return;
             }
 
-            this.TextBatteryName.Text = dt.Rows[0]["battery_Name"].ToString();
+            this.TextBatteryName.Text = dt.Rows[0]["Battery_ID"].ToString();
             this.TextBatteryStatus.Text = dt.Rows[0]["status"].ToString();
             this.TextStop.Text = dt.Rows[0]["stopReason"].ToString();
 
@@ -50,7 +50,7 @@ namespace HomeWork002
             if (id != null)
             {
 
-                ConnectDB.UpDateBattery(id, name, Status, StopReason);
+                ConnectDB.UpDateBattery( name, Status, StopReason);
                 Response.Redirect("Drone_Battery.aspx");
             }
         }
@@ -62,7 +62,7 @@ namespace HomeWork002
             string Status = this.TextBatteryStatus.Text;
             string StopReason = this.TextStop.Text;
 
-            ConnectDB.UpDateBattery(id, name, Status, StopReason);
+            ConnectDB.UpDateBattery( name, Status, StopReason);
             //Response.Redirect("Drone_Detail.aspx");
         }
 

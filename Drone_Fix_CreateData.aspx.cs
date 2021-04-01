@@ -21,7 +21,7 @@ namespace HomeWork002
                 return;
             }
 
-            this.TextItemName.Text = dt.Rows[0]["ItemName"].ToString();
+            this.TextItemName.Text = dt.Rows[0]["Drone_ID"].ToString();
             this.TextStopDate.Text = dt.Rows[0]["StopDate"].ToString();
             this.TextSendDate.Text = dt.Rows[0]["SendDate"].ToString();
             this.TextFixVendor.Text = dt.Rows[0]["FixVendor"].ToString();
@@ -51,12 +51,12 @@ namespace HomeWork002
 
             if(id == null)
             {
-                ConnectDB.InsertIntoDroneFix(item, stop, send, fix, reason, change, remarks);
+                ConnectDB.InsertIntoDroneFix(item, change, stop, send, fix, reason, remarks);
             }
 
             if (id != null)
             {
-                ConnectDB.UpDateDroneFix(id, item, stop, send, fix, reason, change, remarks);
+                ConnectDB.UpDateDroneFix(id, item, change, stop, send, fix, reason, remarks);
             }
 
             Response.Redirect("Drone_Fixed.aspx");

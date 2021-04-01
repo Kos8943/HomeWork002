@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectDB.cs" />
+    <Compile Include="DBAccountManager.cs" />
     <Compile Include="Drone_Battery.aspx.cs">
       <DependentUpon>Drone_Battery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +127,7 @@
     <Compile Include="Headder1.ascx.designer.cs">
       <DependentUpon>Headder1.ascx</DependentUpon>
     </Compile>
+    <Compile Include="LoginHelper.cs" />
     <Compile Include="LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
