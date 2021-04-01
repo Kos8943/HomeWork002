@@ -11,52 +11,34 @@ namespace HomeWork002
 {
 
 
-    public partial class MainWebForm
+    public partial class ChangePage
     {
 
         /// <summary>
-        /// head 控制項。
+        /// aLinkFristPage 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkFristPage;
 
         /// <summary>
-        /// form1 控制項。
+        /// PlaceHolder1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
 
         /// <summary>
-        /// Headder1 控制項。
+        /// aLinkLastPage 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::HomeWork002.Headder1 Headder1;
-
-        /// <summary>
-        /// ContentPlaceHolder1 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
-
-        /// <summary>
-        /// ChangePage 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::HomeWork002.ChangePage ChangePage;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkLastPage;
     }
 }

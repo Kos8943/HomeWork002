@@ -11,27 +11,12 @@ namespace HomeWork002
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
 
-        }
-
-        protected void lastPage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void nextPage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
+        }       
     }
 }

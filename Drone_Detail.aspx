@@ -164,8 +164,6 @@
                 </tr>
             </ItemTemplate>
         </asp:Repeater>
-    </table>
+    </table>       
     </div>
-    
-
 </asp:Content>

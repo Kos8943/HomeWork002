@@ -1,6 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainWebForm.master.cs" Inherits="HomeWork002.MainWebForm" %>
 
 <%@ Register Src="~/Headder1.ascx" TagPrefix="uc1" TagName="Headder1" %>
+<%@ Register Src="~/ChangePage.ascx" TagPrefix="uc1" TagName="ChangePage" %>
+
 
 
 <!DOCTYPE html>
@@ -122,14 +124,14 @@
             color: rgb(238,238,238);
         }
 
-        .pageButton {
-            padding: 0;
-            margin-right: 15px;
-            border: none;
-            background: none;
-            outline: none;
-            font-size: 20px;
-            color: Highlight;
+        .LinkStyle{
+            margin-right:10px;
+            font-size:18px;
+        }
+
+        .PageArea{
+            text-align:center;
+            /*background-color:aqua;*/
         }
     </style>
 
@@ -157,18 +159,8 @@
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
-                <div>
-                    <asp:Button ID="lastPage" CssClass="pageButton" runat="server" Text="上一頁" OnClick="lastPage_Click"/>
-                    <asp:Button ID="Button1" CssClass="pageButton" runat="server" Text="1" OnClick="Button1_Click"/>
-                    <asp:Button ID="Button2" CssClass="pageButton" runat="server" Text="2" OnClick="Button1_Click"/>
-                    <asp:Button ID="Button3" CssClass="pageButton" runat="server" Text="3" OnClick="Button1_Click"/>
-                    <asp:Button ID="Button4" CssClass="pageButton" runat="server" Text="4" OnClick="Button1_Click"/>
-                    <asp:Button ID="Button5" CssClass="pageButton" runat="server" Text="5" OnClick="Button1_Click"/>
-                    <asp:Button ID="Button6" CssClass="pageButton" runat="server" Text="6" OnClick="Button1_Click"/>
-                    <asp:Button ID="Button7" CssClass="pageButton" runat="server" Text="7" OnClick="Button1_Click"/>
-                    <asp:Button ID="nextPage" CssClass="pageButton" runat="server" Text="下一頁" OnClick="nextPage_Click"/>
-                </div>
-
+                
+                <uc1:ChangePage runat="server" id="ChangePage"/>
 
             </div>
         </div>

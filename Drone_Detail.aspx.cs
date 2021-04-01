@@ -10,7 +10,7 @@ namespace HomeWork002
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-
+        
         protected void Page_Init(object sender, EventArgs e)
         {
             
@@ -19,6 +19,10 @@ namespace HomeWork002
         protected void Page_Load(object sender, EventArgs e)
         {
             Headder1.TableName = "無人機管理表";
+
+            string Page =Request.QueryString["Page"];            
+
+
             //判定是否登入
             //bool Logined = LoginHelper.HasLogined();
             //if (!Logined)
@@ -28,10 +32,22 @@ namespace HomeWork002
 
             if (!IsPostBack)
             {
-                
-                DataTable dt = ConnectDB.ReadDroneDetail();               
-                this.DroneDetailRepeater.DataSource = dt;
+
+                DataTable dt = ConnectDB.ReadDroneDetail();
+
+                if (Page == null)
+                {
+                    Page = "1";
+                }
+
+                ChangePage.TotalSize = dt.Rows.Count;
+                int fistData = (Convert.ToInt32(Page) - 1) * 10 + 1;
+                int LastData = Convert.ToInt32(Page) * 10;
+
+                DataTable dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
+                this.DroneDetailRepeater.DataSource = dt1;
                 this.DroneDetailRepeater.DataBind();
+
             }
 
 
