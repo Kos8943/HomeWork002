@@ -19,6 +19,10 @@ namespace HomeWork002
         protected void Page_Load(object sender, EventArgs e)
         {
             int currentPageIndex = Convert.ToInt32(Request.QueryString["Page"]);
+            if (currentPageIndex == 0)
+            {
+                currentPageIndex = 1;
+            }
 
             int pages = TotalSize / PageSize + 1;
 
@@ -31,6 +35,25 @@ namespace HomeWork002
                     continue;
                 }
 
+                if (i == pages + 1)
+                {
+                    break;
+                }
+
+                if (i == currentPageIndex)
+                {
+                    this.PlaceHolder1.Controls.Add(
+                    new HyperLink()
+                    {
+                        ID = $"btn{i}",
+                        Text = $"{i}",
+                        NavigateUrl = $"{Url}?Page={i}",
+                        CssClass = "LinkStyle",
+                        ForeColor = System.Drawing.Color.Black
+                    });
+                    continue;
+                }
+
                 //動態增加連結
                 this.PlaceHolder1.Controls.Add(
                     new HyperLink() { 
@@ -40,10 +63,7 @@ namespace HomeWork002
                         CssClass="LinkStyle"
                     });
 
-                if(i == pages)
-                {
-                    break;
-                }
+                
             }
 
             //this.aLink1.HRef = this.BuildPagingUrl(currentPageIndex - 3);

@@ -126,7 +126,7 @@
 
         .LinkStyle{
             margin-right:10px;
-            font-size:18px;
+            font-size:22px;
         }
 
         .PageArea{
@@ -155,7 +155,7 @@
                 <div class="tableList"><a href="https://localhost:44357/Drone_Detail.aspx">使用者管理</a></div>
             </div>
             <div class="tableArea">
-                <div class="tableContent" style="overflow: scroll;">
+                <div class="tableContent">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
