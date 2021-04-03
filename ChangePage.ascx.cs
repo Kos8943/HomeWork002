@@ -26,20 +26,34 @@ namespace HomeWork002
 
             int pages = TotalSize / PageSize + 1;
 
+            if (TotalSize % PageSize == 0)
+            {
+                pages = TotalSize / PageSize;
+            }
+
             this.aLinkFristPage.HRef = this.BuildPagingUrl(1);
             this.aLinkLastPage.HRef = this.BuildPagingUrl(pages);
             for(int i = currentPageIndex - 3; i <= currentPageIndex + 3; i++)
             {
+                //不讓頁數為負數
                 if(i <= 0)
                 {
                     continue;
-                }
+                }                
 
+                //防止末頁按鈕多跑頁數
                 if (i == pages + 1)
                 {
                     break;
                 }
 
+                if(i == pages + 1 && TotalSize % PageSize == 0)
+                {
+                    break;
+                }
+
+
+                //當前頁數為黑色
                 if (i == currentPageIndex)
                 {
                     this.PlaceHolder1.Controls.Add(
@@ -53,6 +67,7 @@ namespace HomeWork002
                     });
                     continue;
                 }
+                
 
                 //動態增加連結
                 this.PlaceHolder1.Controls.Add(

@@ -385,15 +385,19 @@ namespace HomeWork002
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
-            string queryString = $@" SELECT * FROM Drone_Detail WHERE Sid >= @Sid and Sid <= @ID ORDER BY Sid ASC;";
+            string queryString = $@" SELECT * FROM 
+                                        (SELECT *,ROW_NUMBER() OVER (ORDER BY [Sid]) AS ROWSID FROM Drone_Detail)
+                                     a WHERE ROWSID >= @ROWSID1 AND ROWSID <= @ROWSID2;";
+
+            //string queryString = $@" SELECT * FROM Drone_Detail WHERE Sid >= @Sid and Sid <= @ID ORDER BY Sid ASC;";
 
             //建立連線
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 //轉譯成SQL看得懂的語法
                 SqlCommand command = new SqlCommand(queryString, connection);
-                command.Parameters.AddWithValue("@Sid", firstData);
-                command.Parameters.AddWithValue("@ID", lastData);
+                command.Parameters.AddWithValue("@ROWSID1", firstData);
+                command.Parameters.AddWithValue("@ROWSID2", lastData);
                 try
                 {
                     //開始連線

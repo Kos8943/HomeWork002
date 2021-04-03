@@ -45,6 +45,8 @@ namespace HomeWork002
                 int LastData = Convert.ToInt32(Page) * 10;
 
                 DataTable dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
+                             
+                //dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
                 this.DroneDetailRepeater.DataSource = dt1;
                 this.DroneDetailRepeater.DataBind();
 
@@ -64,7 +66,7 @@ namespace HomeWork002
             {
                 if (e.Item.ItemType == ListItemType.AlternatingItem)
                 {
-
+                    
                 }
 
                 DataRowView drv = e.Item.DataItem as DataRowView;
@@ -77,11 +79,11 @@ namespace HomeWork002
         {
             string cmdName = e.CommandName;
             string cmdArgu = e.CommandArgument.ToString();
+            string Page = Request.QueryString["Page"];
 
-
-            if("DeleteItem" == cmdName)
+            if ("DeleteItem" == cmdName)
             {
-                ConnectDB.DelectDroneDetail(cmdArgu);
+                ConnectDB.DelectDroneDetail(cmdArgu);         
             }
 
             if("UpDateItem" == cmdName)
@@ -92,9 +94,24 @@ namespace HomeWork002
             }
             
 
-            DataTable dt = ConnectDB.ReadDroneDetail();
-            this.DroneDetailRepeater.DataSource = dt;
+            if (Page == null)
+            {
+                Page = "1";
+            }
+
+            int fistData = (Convert.ToInt32(Page) - 1) * 10 + 1;
+            int LastData = Convert.ToInt32(Page) * 10;
+
+            DataTable dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
+
+            //dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
+            this.DroneDetailRepeater.DataSource = dt1;
             this.DroneDetailRepeater.DataBind();
+
+
+            //dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
+            //this.DroneDetailRepeater.DataSource = dt1;
+            //this.DroneDetailRepeater.DataBind();
         }
 
 
