@@ -16,12 +16,20 @@ namespace HomeWork002
 
             DataTable dt = ConnectDB.ReadSingleDroneFix(id);
 
+            DataTable dr = ConnectDB.ReadDroneDetail();
+
+            this.DropDownListDroneID.DataSource = dr;
+
+            this.DropDownListDroneID.DataTextField = "Drone_ID";
+            this.DropDownListDroneID.DataValueField = "Drone_ID";
+            this.DropDownListDroneID.DataBind();
+
             if (id == null)
             {
                 return;
             }
 
-            this.TextItemName.Text = dt.Rows[0]["Drone_ID"].ToString();
+            this.DropDownListDroneID.SelectedValue = dt.Rows[0]["Drone_ID"].ToString();
             this.TextStopDate.Text = dt.Rows[0]["StopDate"].ToString();
             this.TextSendDate.Text = dt.Rows[0]["SendDate"].ToString();
             this.TextFixVendor.Text = dt.Rows[0]["FixVendor"].ToString();
@@ -41,12 +49,13 @@ namespace HomeWork002
             //{
             //    Response.Redirect("LoginPage.aspx");
             //}
+
         }
 
         protected void Create_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["ID"];
-            string item = this.TextItemName.Text;
+            string item = this.DropDownListDroneID.SelectedValue;
             string stop = this.TextStopDate.Text;
             string send = this.TextSendDate.Text;
             string fix = this.TextFixVendor.Text;

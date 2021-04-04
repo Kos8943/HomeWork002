@@ -18,7 +18,7 @@ namespace HomeWork002
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
-            string queryString = $@" SELECT * FROM Drone_Detail;";
+            string queryString = $@" SELECT * FROM Drone_Detail ORDER BY Sid ASC;";
 
             //建立連線
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -817,7 +817,7 @@ namespace HomeWork002
 
 
         #region 建立維修紀錄
-        public static DataTable InsertIntoDroneFix(string Drone_ID, string StopDate, string SendDate, string FixVendor, string StopReason, string FixChange, string Remarks)
+        public static DataTable InsertIntoDroneFix(string Drone_ID, string FixChange, string StopDate, string SendDate, string FixVendor, string StopReason,  string Remarks)
         {
 
             //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱

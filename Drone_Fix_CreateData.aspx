@@ -26,7 +26,8 @@
 
         .inputMargin{
             margin:0 auto 4% auto;
-            width:50%;           
+            width:52%;
+            /*font-size:18px;*/
         }
 
         .bottomArea{
@@ -48,7 +49,7 @@
 
             <div class="inputMargin d-flex justify-content-between">
                 <span>無人機編號:</span>
-                <asp:TextBox ID="TextItemName" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="DropDownListDroneID" runat="server" style="width:182px;height:30px;"></asp:DropDownList>            
             </div>
 
             <div class="inputMargin d-flex justify-content-between">
