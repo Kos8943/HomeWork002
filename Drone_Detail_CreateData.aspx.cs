@@ -33,6 +33,14 @@ namespace HomeWork002
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.DroneIDmsg.Visible = false;
+            this.errorManufacturerMsg.Visible = false;
+            this.errorWeightLoadMsg.Visible = false;
+            this.errorStatusMsg.Visible = false;
+            this.errorOperatorMsg.Visible = false;
+
+            Headder1.TableName = "";
+            this.Master.FindControl("ChangePage").Visible = false;
             //判定是否登入
             //bool Logined = LoginHelper.HasLogined();
             //if (!Logined)
@@ -51,20 +59,50 @@ namespace HomeWork002
             string StopReason = this.TextStopReason.Text;
             string Operator = this.TextOperator.Text;
             string Method = this.Create.Text;
+            bool canSubmit = false;
 
+
+            if (name == "")
+            {
+                this.DroneIDmsg.Visible = true;
+            }
+            if (Manufacturer == "")
+            {
+                this.errorManufacturerMsg.Visible = true;
+            }
+            if (WeightLoad == "")
+            {
+                this.errorWeightLoadMsg.Visible = true;
+            }
+            if (Status == "")
+            {
+                this.errorStatusMsg.Visible = true;
+            }
+            if (Operator == "")
+            {
+                this.errorOperatorMsg.Visible = true;
+            }
+
+            if(name != "" && Manufacturer != "" && WeightLoad != "" && Status != "" && Operator != "")
+            {
+                canSubmit = true;
+            }
             //將變數傳進Method
-
-            if(id == null)
+            if (canSubmit)
             {
-                ConnectDB.InsertIntoDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
-                Response.Redirect("Drone_Detail.aspx");
+                if (id == null)
+                {
+                    ConnectDB.InsertIntoDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
+                    Response.Redirect("Drone_Detail.aspx");
+                }
+
+                if (id != null)
+                {
+                    ConnectDB.UpDateDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
+                    Response.Redirect("Drone_Detail.aspx");
+                }
             }
 
-            if (id != null)
-            {
-                ConnectDB.UpDateDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
-                Response.Redirect("Drone_Detail.aspx");
-            }
 
         }
 

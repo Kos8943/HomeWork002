@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ChangePage.ascx.cs" Inherits="HomeWork002.ChangePage" %>
 
-<div class="PageArea">
+<div class="PageArea" runat="server" id="changePageArea">
     <a runat="server" class="LinkStyle" id="aLinkFristPage" href="#">首頁</a>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
 

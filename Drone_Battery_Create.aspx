@@ -27,12 +27,24 @@
 
         .inputMargin{
             margin:0 auto 4% auto;
-            width:50%;           
+            width:60%;           
         }
 
         .bottomArea{
             width:25%;
             margin:auto; 
+        }
+
+        .errorMsg{
+            font-size:12px;
+            color:red;
+            /*display:none;*/
+        }
+        
+
+        .errorMsgArea{
+            width:100%;
+            padding-left:20%;
         }
     </style>
 </asp:Content>
@@ -48,11 +60,17 @@
 
             <div class="tutleLine"></div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="BatteryIDmsg" visible="false">*請輸入編號</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>電池編號:</span>
                 <asp:TextBox ID="TextBatteryName" runat="server" Text=""></asp:TextBox>
             </div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="BatteryStatus" visible="false">*請狀態</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>使用狀態:</span>
                 <asp:TextBox ID="TextBatteryStatus" runat="server" Text=""></asp:TextBox>

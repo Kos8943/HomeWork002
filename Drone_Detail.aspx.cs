@@ -66,12 +66,14 @@ namespace HomeWork002
             {
                 if (e.Item.ItemType == ListItemType.AlternatingItem)
                 {
+                    DataRowView drv = e.Item.DataItem as DataRowView;
                     
+
                 }
 
-                DataRowView drv = e.Item.DataItem as DataRowView;
+                
 
-
+                
             }
         }
 

@@ -27,12 +27,23 @@
 
         .inputMargin{
             margin:0 auto 4% auto;
-            width:50%;           
+            width:60%;           
         }
 
         .bottomArea{
             width:25%;
             margin:auto; 
+        }
+
+        .errorMsg{
+            font-size:12px;
+            color:red;
+            /*display:none;*/
+        }
+
+        .errorMsgArea{
+            width:100%;
+            padding-left:20%;
         }
     </style>
 </asp:Content>
@@ -46,31 +57,53 @@
 
             <div class="tutleLine"></div>
 
+
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="DroneIDmsg">*請輸入編號</span>
+            </div>
+            
             <div class="inputMargin d-flex justify-content-between">
                 <span>植保機編號:</span>
-                <asp:TextBox ID="TextDroneName" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextDroneName" runat="server"></asp:TextBox>               
             </div>
 
+
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="errorManufacturerMsg">*請輸入製造商</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>製造商:</span>
                 <asp:TextBox ID="TextManufacturer" runat="server"></asp:TextBox>
             </div>
 
+
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="errorWeightLoadMsg">*請輸入總承載重量</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
-                <span>起飛總乘載重量:</span>
+                <span>起飛總承載重量:</span>
                 <asp:TextBox ID="TextWeightLoad" runat="server"></asp:TextBox>
             </div>
 
+
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="errorStatusMsg">*請輸入使用狀態</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>使用狀態:</span>
                 <asp:TextBox ID="TextStatus" runat="server"></asp:TextBox>
             </div>
+
 
             <div class="inputMargin d-flex justify-content-between">
                 <span>停用原因:</span>
                 <asp:TextBox ID="TextStopReason" runat="server"></asp:TextBox>
             </div>
 
+
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="errorOperatorMsg">*請輸入負責人</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>負責人:</span>
                 <asp:TextBox ID="TextOperator" runat="server"></asp:TextBox>
@@ -83,4 +116,5 @@
 
         </div>
     </div>
+
 </asp:Content>

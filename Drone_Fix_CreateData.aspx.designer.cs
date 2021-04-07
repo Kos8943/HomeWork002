@@ -33,6 +33,15 @@ namespace HomeWork002
         protected global::System.Web.UI.WebControls.DropDownList DropDownListDroneID;
 
         /// <summary>
+        /// FixChangeMsg 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FixChangeMsg;
+
+        /// <summary>
         /// TextChange 控制項。
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace HomeWork002
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextChange;
+
+        /// <summary>
+        /// FixStopDateMsg 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FixStopDateMsg;
 
         /// <summary>
         /// TextStopDate 控制項。
@@ -51,6 +69,15 @@ namespace HomeWork002
         protected global::System.Web.UI.WebControls.TextBox TextStopDate;
 
         /// <summary>
+        /// FixSendDateMsg 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FixSendDateMsg;
+
+        /// <summary>
         /// TextSendDate 控制項。
         /// </summary>
         /// <remarks>
@@ -60,6 +87,15 @@ namespace HomeWork002
         protected global::System.Web.UI.WebControls.TextBox TextSendDate;
 
         /// <summary>
+        /// FixVendorMsg 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FixVendorMsg;
+
+        /// <summary>
         /// TextFixVendor 控制項。
         /// </summary>
         /// <remarks>
@@ -67,6 +103,15 @@ namespace HomeWork002
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextFixVendor;
+
+        /// <summary>
+        /// FixStopReason 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FixStopReason;
 
         /// <summary>
         /// TextStopReason 控制項。

@@ -96,7 +96,11 @@
 
         .tdFeild{
             padding-left:20px;
-            height:59px;
+            height:61px;
+        }
+
+        .Row2{
+            background-color: rgb(156,234,234);
         }
 
     </style>
@@ -163,6 +167,25 @@
                     </td>
                 </tr>
             </ItemTemplate>
+            <AlternatingItemTemplate>
+                <tr>
+                    <%--<td class="tdFeild">
+                        <asp:CheckBox ID="CheckBox" runat="server" />
+                    </td>--%>
+                    <td class="Row2 tdFeild"><%# Eval("Drone_ID") %></td>
+                    <td class="Row2 tdFeild"><%# Eval("Manufacturer") %></td>
+                    <td class="Row2 tdFeild"><%# Eval("WeightLoad") %></td>
+                    <td class="Row2 tdFeild"><%# Eval("Status") %></td>
+                    <td class="Row2 tdFeild"><%# Eval("StopReason") %></td>
+                    <td class="Row2 tdFeild"><%# Eval("operator") %></td>
+                    <td class="Row2 tdFeild">
+                        <asp:Button ID="btnUpData" runat="server" Text="修改" CommandName="UpDateItem" CommandArgument='<%# Eval("Drone_ID") %>'/>
+                    </td>
+                    <td class="Row2 tdFeild">
+                        <asp:Button ID="btnDelData" runat="server" Text="刪除" CommandName="DeleteItem" CommandArgument='<%# Eval("Drone_ID") %>'/>
+                    </td>
+                </tr>
+            </AlternatingItemTemplate>
         </asp:Repeater>
     </table>       
     </div>

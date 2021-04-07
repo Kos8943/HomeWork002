@@ -26,13 +26,24 @@
 
         .inputMargin{
             margin:0 auto 4% auto;
-            width:52%;
+            width:50%;
             /*font-size:18px;*/
         }
 
         .bottomArea{
             width:25%;
             margin:auto; 
+        }
+
+        .errorMsg{
+            font-size:12px;
+            color:red;
+            /*display:none;*/
+        }
+
+        .errorMsgArea{
+            width:100%;
+            padding-left:25%;
         }
     </style>
 </asp:Content>
@@ -52,26 +63,41 @@
                 <asp:DropDownList ID="DropDownListDroneID" runat="server" style="width:182px;height:30px;"></asp:DropDownList>            
             </div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="FixChangeMsg" visible="false">*請輸入維修部件</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>維修部件:</span>
                 <asp:TextBox ID="TextChange" runat="server"></asp:TextBox>
             </div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="FixStopDateMsg" visible="false">*請選擇日期</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>故障日期:</span>
-                <asp:TextBox ID="TextStopDate" runat="server" type="date" style="width:182px;"></asp:TextBox>
+                <asp:TextBox ID="TextStopDate" runat="server" type="date" style="width:182px;" ></asp:TextBox>
             </div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="FixSendDateMsg" visible="false">*請選擇日期</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>送修時間:</span>
                 <asp:TextBox ID="TextSendDate" runat="server" type="date" style="width:182px;"></asp:TextBox>
             </div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="FixVendorMsg" visible="false">*請輸入維修廠商</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>維修廠商:</span>
                 <asp:TextBox ID="TextFixVendor" runat="server"></asp:TextBox>
             </div>
 
+            <div class="errorMsgArea">
+                <span class="errorMsg" runat="server" id="FixStopReason" visible="false">*請送修原因</span>
+            </div>
             <div class="inputMargin d-flex justify-content-between">
                 <span>送修原因:</span>
                 <asp:TextBox ID="TextStopReason" runat="server"></asp:TextBox>

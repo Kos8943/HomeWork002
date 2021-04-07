@@ -24,6 +24,15 @@ namespace HomeWork002
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
 
         /// <summary>
+        /// BatteryIDmsg 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BatteryIDmsg;
+
+        /// <summary>
         /// TextBatteryName 控制項。
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace HomeWork002
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBatteryName;
+
+        /// <summary>
+        /// BatteryStatus 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BatteryStatus;
 
         /// <summary>
         /// TextBatteryStatus 控制項。

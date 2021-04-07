@@ -324,7 +324,7 @@ namespace HomeWork002
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
-            string queryString = $@" SELECT * FROM Drone_Detail WHERE {WantSearch} LIKE @KeyWord;";
+            string queryString = $@" SELECT * FROM Drone_Detail  WHERE {WantSearch} LIKE @KeyWord ORDER BY {WantSearch} ASC;";
 
             //建立連線
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -510,16 +510,16 @@ namespace HomeWork002
 
 
         #region 新增電池資料的Method
-        public static DataTable InsertIntoDroneBattery(string BatteryName, string Stutas, string StopReason)
+        public static DataTable InsertIntoDroneBattery(string Battery_ID, string Stutas, string StopReason)
         {
             //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
             string queryString = $@"INSERT INTO Drone_Battery
-                                        (battery_Name, status, stopReason)
+                                        (Battery_ID, status, stopReason)
                                     VALUES
-                                        (@battery_Name, @status, @stopReason)";
+                                        (@Battery_ID, @status, @stopReason)";
 
 
 
@@ -531,7 +531,7 @@ namespace HomeWork002
                 SqlCommand command = new SqlCommand(queryString, connection);
 
                 //將值丟進相對應的位子
-                command.Parameters.AddWithValue("@battery_Name", BatteryName);
+                command.Parameters.AddWithValue("@Battery_ID", Battery_ID);
                 command.Parameters.AddWithValue("@status", Stutas);
                 command.Parameters.AddWithValue("@stopReason", StopReason);
 
@@ -572,14 +572,14 @@ namespace HomeWork002
 
 
         #region 刪除電池資料的Method
-        public static DataTable DeleteBattery(string Battery_ID)
+        public static DataTable DeleteBattery(int Sid)
         {
 
             //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
-            string queryString = $@"DELETE FROM Drone_Battery WHERE Battery_ID = @Battery_ID";
+            string queryString = $@"DELETE FROM Drone_Battery WHERE Sid = @Sid";
             //DELETE FROM TestTable_1 WHERE ID
 
 
@@ -591,7 +591,7 @@ namespace HomeWork002
                 SqlCommand command = new SqlCommand(queryString, connection);
 
                 //將值丟進相對應的位子
-                command.Parameters.AddWithValue("@Battery_ID", Battery_ID);
+                command.Parameters.AddWithValue("@Sid", Sid);
 
 
 
@@ -632,13 +632,13 @@ namespace HomeWork002
 
 
         #region 修改電池資料表的Method
-        public static DataTable UpDateBattery(string BatteryName, string Status, string StopReason)
+        public static DataTable UpDateBattery(int Sid,string Battery_ID, string Status, string StopReason)
         {
             //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
-            string queryString = $@"UPDATE Drone_Battery SET Battery_ID=@Battery_ID, status=@status, stopReason=@stopReason WHERE Battery_ID=@Battery_ID";
+            string queryString = $@"UPDATE Drone_Battery SET Battery_ID=@Battery_ID, status=@status, stopReason=@stopReason WHERE Sid=@Sid";
 
 
 
@@ -650,7 +650,8 @@ namespace HomeWork002
 
                 //將值丟進相對應的位子
                 //command.Parameters.AddWithValue("@sid", Sid);
-                command.Parameters.AddWithValue("@battery_Name", BatteryName);
+                command.Parameters.AddWithValue("@Sid", Sid);
+                command.Parameters.AddWithValue("@Battery_ID", Battery_ID);
                 command.Parameters.AddWithValue("@status", Status);
                 command.Parameters.AddWithValue("@stopReason", StopReason);
 
@@ -691,13 +692,13 @@ namespace HomeWork002
 
 
         #region 查詢單筆電池資料表的Method
-        public static DataTable ReadSingleBattery(string Battery_ID)
+        public static DataTable ReadSingleBattery(string Sid)
         {
             //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
             string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
 
             //使用的SQL語法
-            string queryString = $@" SELECT * FROM Drone_Battery WHERE Battery_ID=@Battery_ID;";
+            string queryString = $@" SELECT * FROM Drone_Battery WHERE Sid=@Sid;";
 
             //建立連線
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -706,7 +707,7 @@ namespace HomeWork002
                 SqlCommand command = new SqlCommand(queryString, connection);
 
                 //將值丟進相對應的位子
-                command.Parameters.AddWithValue("@Battery_ID", Battery_ID);
+                command.Parameters.AddWithValue("@Sid", Sid);
 
                 try
                 {
@@ -749,6 +750,132 @@ namespace HomeWork002
                 //}
             }
         }
+        #endregion
+
+        #region 單頁10筆電池查詢
+
+        public static DataTable ReadTenDataDroneBattery(int firstData, int lastData)
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM 
+                                        (SELECT *,ROW_NUMBER() OVER (ORDER BY [Sid]) AS ROWSID FROM Drone_Battery)
+                                     a WHERE ROWSID >= @ROWSID1 AND ROWSID <= @ROWSID2;";
+
+            //string queryString = $@" SELECT * FROM Drone_Detail WHERE Sid >= @Sid and Sid <= @ID ORDER BY Sid ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@ROWSID1", firstData);
+                command.Parameters.AddWithValue("@ROWSID2", lastData);
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 電池關鍵字模糊查詢
+
+        public static DataTable KeyWordSearchDroneBattery(string WantSearch, string KeyWord)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_Battery  WHERE {WantSearch} LIKE @KeyWord ORDER BY {WantSearch} ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue($"@KeyWord", "%" + KeyWord + "%");
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        } 
         #endregion
         #endregion
 
@@ -961,7 +1088,7 @@ namespace HomeWork002
 
                 //將值丟進相對應的位子
                 command.Parameters.AddWithValue("@Sid", Sid);
-                command.Parameters.AddWithValue("@ItemName", Drone_ID);
+                command.Parameters.AddWithValue("@Drone_ID", Drone_ID);
                 command.Parameters.AddWithValue("@StopDate", StopDate);
                 command.Parameters.AddWithValue("@SendDate", SendDate);
                 command.Parameters.AddWithValue("@FixVendor", FixVendor);
@@ -1060,7 +1187,134 @@ namespace HomeWork002
 
             }
         }
-        #endregion 
-        #endregion 
+        #endregion
+
+        #region 單頁讀取10筆維修紀錄
+
+        public static DataTable ReadTenDataDroneFix(int firstData, int lastData)
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM 
+                                        (SELECT *,ROW_NUMBER() OVER (ORDER BY [Sid]) AS ROWSID FROM Drone_Fix)
+                                     a WHERE ROWSID >= @ROWSID1 AND ROWSID <= @ROWSID2;";
+
+            //string queryString = $@" SELECT * FROM Drone_Detail WHERE Sid >= @Sid and Sid <= @ID ORDER BY Sid ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@ROWSID1", firstData);
+                command.Parameters.AddWithValue("@ROWSID2", lastData);
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+
+        #region 維修紀錄關鍵字模糊查詢
+
+        public static DataTable KeyWordSearchDroneFixed(string WantSearch, string KeyWord)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_Fix  WHERE {WantSearch} LIKE @KeyWord ORDER BY {WantSearch} ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue($"@KeyWord", "%" + KeyWord + "%");
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+        #endregion
     }
 }

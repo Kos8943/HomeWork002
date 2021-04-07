@@ -14,6 +14,8 @@ namespace HomeWork002
         {
             Headder1.TableName = "電池管理表";
 
+            string Page = Request.QueryString["Page"];
+
             //判定是否登入
             //bool Logined = LoginHelper.HasLogined();
             //if (!Logined)
@@ -24,7 +26,20 @@ namespace HomeWork002
             if (!IsPostBack)
             {
                 DataTable dt = ConnectDB.ReadDroneBattery();
-                this.DroneBatteryReater.DataSource = dt;
+
+                if (Page == null)
+                {
+                    Page = "1";
+                }
+
+                ChangePage.TotalSize = dt.Rows.Count;
+                int fistData = (Convert.ToInt32(Page) - 1) * 10 + 1;
+                int LastData = Convert.ToInt32(Page) * 10;
+
+                DataTable dt1 = ConnectDB.ReadTenDataDroneBattery(fistData, LastData);
+
+                
+                this.DroneBatteryReater.DataSource = dt1;
                 this.DroneBatteryReater.DataBind();
             }
             
@@ -40,27 +55,51 @@ namespace HomeWork002
         {
             string cmdName = e.CommandName;
             string cmdArgu = e.CommandArgument.ToString();
+            string Page = Request.QueryString["Page"];
 
             if ("DeleteItem" == cmdName)
             {
-                ConnectDB.DeleteBattery(cmdArgu);
+                ConnectDB.DeleteBattery(Convert.ToInt32(cmdArgu));
             }
 
             if ("UpDateItem" == cmdName)
             {
-                string targetUrl = "~/Drone_Battery_Create.aspx?ID=" + cmdArgu;
+                string targetUrl = "~/Drone_Battery_Create.aspx?Sid=" + cmdArgu;
 
                 Response.Redirect(targetUrl);
             }
 
             DataTable dt = ConnectDB.ReadDroneBattery();
-            this.DroneBatteryReater.DataSource = dt;
+
+            if (Page == null)
+            {
+                Page = "1";
+            }
+
+            ChangePage.TotalSize = dt.Rows.Count;
+            int fistData = (Convert.ToInt32(Page) - 1) * 10 + 1;
+            int LastData = Convert.ToInt32(Page) * 10;
+
+            DataTable dt1 = ConnectDB.ReadTenDataDroneBattery(fistData, LastData);
+
+
+            this.DroneBatteryReater.DataSource = dt1;
             this.DroneBatteryReater.DataBind();
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("Drone_Battery_Create.aspx");
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string WantSearch = this.DropDownListSearch.SelectedValue;
+            string KeyWord = this.textKeyWord.Text;
+
+            DataTable dt = ConnectDB.KeyWordSearchDroneBattery(WantSearch, KeyWord);
+            this.DroneBatteryReater.DataSource = dt;
+            this.DroneBatteryReater.DataBind();
         }
 
     }

@@ -12,7 +12,7 @@ namespace HomeWork002
     {
         protected void Page_Init(object sender, EventArgs e)
         {
-            string id = Request.QueryString["ID"];
+            string id = Request.QueryString["Sid"];
 
             DataTable dt = ConnectDB.ReadSingleBattery(id);
 
@@ -30,6 +30,11 @@ namespace HomeWork002
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Headder1.TableName = "";
+            this.Master.FindControl("ChangePage").Visible = false;
+
+            this.BatteryIDmsg.Visible = false;
+            this.BatteryStatus.Visible = false;
             //判定是否登入
             //bool Logined = LoginHelper.HasLogined();
             //if (!Logined)
@@ -40,34 +45,54 @@ namespace HomeWork002
 
         protected void Create_Click(object sender, EventArgs e)
         {
-            string id = Request.QueryString["ID"];
+            int id = Convert.ToInt32(Request.QueryString["Sid"]);
             string name = this.TextBatteryName.Text;
             string Status = this.TextBatteryStatus.Text;
             string StopReason = this.TextStop.Text;
+            bool canSubmit = false;
 
-
-            if (id == null)
+            if(name == "")
             {
-                ConnectDB.InsertIntoDroneBattery(name, Status, StopReason);
-                Response.Redirect("Drone_Battery.aspx");
+                this.BatteryIDmsg.Visible = true;
             }
 
-            if (id != null)
+            if (Status == "")
             {
-
-                ConnectDB.UpDateBattery( name, Status, StopReason);
-                Response.Redirect("Drone_Battery.aspx");
+                this.BatteryStatus.Visible = true;
             }
+
+            if (name != "" && Status != "")
+            {
+                canSubmit = true;
+            }
+          
+
+            if (canSubmit)
+            {
+                if (id == 0)
+                {
+                    ConnectDB.InsertIntoDroneBattery(name, Status, StopReason);
+                    Response.Redirect("Drone_Battery.aspx");
+                }
+
+                if (id != 0)
+                {
+
+                    ConnectDB.UpDateBattery(id, name, Status, StopReason);
+                    Response.Redirect("Drone_Battery.aspx");
+                }
+            }
+            
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            string id = Request.QueryString["ID"];
-            string name = this.TextBatteryName.Text;
-            string Status = this.TextBatteryStatus.Text;
-            string StopReason = this.TextStop.Text;
+            //string id = Request.QueryString["ID"];
+            //string name = this.TextBatteryName.Text;
+            //string Status = this.TextBatteryStatus.Text;
+            //string StopReason = this.TextStop.Text;
 
-            ConnectDB.UpDateBattery( name, Status, StopReason);
+            //ConnectDB.UpDateBattery( name, Status, StopReason);
             //Response.Redirect("Drone_Detail.aspx");
         }
 

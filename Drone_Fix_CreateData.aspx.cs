@@ -20,6 +20,7 @@ namespace HomeWork002
 
             this.DropDownListDroneID.DataSource = dr;
 
+            
             this.DropDownListDroneID.DataTextField = "Drone_ID";
             this.DropDownListDroneID.DataValueField = "Drone_ID";
             this.DropDownListDroneID.DataBind();
@@ -43,6 +44,14 @@ namespace HomeWork002
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Headder1.TableName = "";
+            this.Master.FindControl("ChangePage").Visible = false;
+
+            this.FixChangeMsg.Visible = false;
+            this.FixStopDateMsg.Visible = false;
+            this.FixSendDateMsg.Visible = false;
+            this.FixVendorMsg.Visible = false;
+            this.FixStopReason.Visible = false;
             //判定是否登入
             //bool Logined = LoginHelper.HasLogined();
             //if (!Logined)
@@ -55,25 +64,59 @@ namespace HomeWork002
         protected void Create_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["ID"];
-            string item = this.DropDownListDroneID.SelectedValue;
+            string DroneID = this.DropDownListDroneID.SelectedValue;
+            string change = this.TextChange.Text;
             string stop = this.TextStopDate.Text;
             string send = this.TextSendDate.Text;
             string fix = this.TextFixVendor.Text;
-            string reason = this.TextStopReason.Text;
-            string change = this.TextChange.Text;
+            string reason = this.TextStopReason.Text;         
             string remarks = this.TextRemarks.Text;
+            bool canSubmit = false;
 
-            if(id == null)
+            if(change == "")
             {
-                ConnectDB.InsertIntoDroneFix(item, change, stop, send, fix, reason, remarks);
+                this.FixChangeMsg.Visible = true;
             }
 
-            if (id != null)
+            if (stop == "")
             {
-                ConnectDB.UpDateDroneFix(id, item, change, stop, send, fix, reason, remarks);
+                this.FixStopDateMsg.Visible = true;
             }
 
-            Response.Redirect("Drone_Fixed.aspx");
+            if (send == "")
+            {
+                this.FixSendDateMsg.Visible = true;
+            }
+
+            if (fix == "")
+            {
+                this.FixVendorMsg.Visible = true;
+            }
+
+            if (reason == "")
+            {
+                this.FixStopReason.Visible = true;
+            }
+
+            if(change != "" && stop != "" && send != "" && fix != "" && reason != "")
+            {
+                canSubmit = true;
+            }
+
+            if (canSubmit)
+            {
+                if (id == null)
+                {
+                    ConnectDB.InsertIntoDroneFix(DroneID, change, stop, send, fix, reason, remarks);
+                }
+
+                if (id != null)
+                {
+                    ConnectDB.UpDateDroneFix(id, DroneID, change, stop, send, fix, reason, remarks);
+                }
+                Response.Redirect("Drone_Fixed.aspx");
+            }
+           
         }
 
         protected void Cancel_Click(object sender, EventArgs e)
