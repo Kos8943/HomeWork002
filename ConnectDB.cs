@@ -1316,5 +1316,439 @@ namespace HomeWork002
         }
         #endregion
         #endregion
+
+
+        #region 使用者帳號管理
+
+        #region 讀取使用者一覽表
+        public static DataTable ReadDroneUserList()
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_UserAccount WHERE Hidden = @Hidden;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@Hidden", 0);
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 單頁讀取10筆維修紀錄
+
+        public static DataTable ReadTenDataDroneUserList(int firstData, int lastData)
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM 
+                                        (SELECT *,ROW_NUMBER() OVER (ORDER BY [Sid]) AS ROWSID FROM Drone_UserAccount)
+                                     a WHERE ROWSID >= @ROWSID1 AND ROWSID <= @ROWSID2 AND Hidden = @Hidden;";
+
+            //string queryString = $@" SELECT * FROM Drone_Detail WHERE Sid >= @Sid and Sid <= @ID ORDER BY Sid ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@ROWSID1", firstData);
+                command.Parameters.AddWithValue("@ROWSID2", lastData);
+                command.Parameters.AddWithValue("@Hidden", 0);
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 讀取單筆使用者帳號
+
+        public static DataTable ReadSingleDroneUser(string sid)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_UserAccount WHERE Sid=@Sid;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@Sid", sid);
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 新增使用者帳號
+
+        public static DataTable InsertIntoDroneUser(string account, string Pwd, string Name)
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@"INSERT INTO Drone_UserAccount
+                                        (Account, Pwd, Name, Hidden)
+                                    VALUES
+                                        (@Account, @Pwd, @Name, @Hidden)";
+
+
+
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //將值丟進相對應的位子
+                command.Parameters.AddWithValue("@account", account);
+                command.Parameters.AddWithValue("@Pwd", Pwd);
+                command.Parameters.AddWithValue("@Name", Name);
+                command.Parameters.AddWithValue("@Hidden", 0);
+
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //受影響的資料筆數(沒有使用)
+                    //int totalChangRows = command.ExecuteNonQuery();
+                    //Console.WriteLine("Total chang" + totalChangRows + " Rows.");
+
+                    return dt;
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    //HttpContext.Current.Response.Write(ex);
+
+                    return null;
+                }
+
+            }
+        }
+        #endregion
+
+        #region 修改使用者帳號
+        public static DataTable UpDateUserAccount(int Sid, string account, string Pwd, string name)
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@"UPDATE Drone_UserAccount SET account=@account, Pwd=@Pwd, name=@name WHERE Sid=@Sid";
+
+
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //將值丟進相對應的位子
+                //command.Parameters.AddWithValue("@sid", Sid);
+                command.Parameters.AddWithValue("@Sid", Sid);
+                command.Parameters.AddWithValue("@account", account);
+                command.Parameters.AddWithValue("@Pwd", Pwd);
+                command.Parameters.AddWithValue("@name", name);
+
+
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //受影響的資料筆數(沒有使用)
+                    //int totalChangRows = command.ExecuteNonQuery();
+                    //Console.WriteLine("Total chang" + totalChangRows + " Rows.");
+
+                    return dt;
+
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine(ex);
+                    //HttpContext.Current.Response.Write(ex);
+
+                    return null;
+                }
+
+            }
+        }
+        #endregion
+
+        #region 刪除使用者資料的Method
+        public static DataTable DeleteUser(int Sid)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@"DELETE FROM Drone_UserAccount WHERE Sid = @Sid";
+            //DELETE FROM TestTable_1 WHERE ID
+
+
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //將值丟進相對應的位子
+                command.Parameters.AddWithValue("@Sid", Sid);
+
+
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //受影響的資料筆數(沒有使用)
+                    int totalChangRows = command.ExecuteNonQuery();
+                    //HttpContext.Current.Response.Write("Total chang" + totalChangRows + " Rows.");
+                    //Console.WriteLine("Total chang" + totalChangRows + " Rows.");
+
+                    return dt;
+
+
+                }
+                catch (Exception ex)
+                {
+                    //HttpContext.Current.Response.Write(ex);
+                    //Console.WriteLine(ex);
+
+                    return null;
+                }
+
+            }
+        }
+        #endregion
+
+        #region 使用者關鍵字模糊查詢
+
+        public static DataTable KeyWordSearchDroneUser(string WantSearch, string KeyWord)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_UserAccount  WHERE Hidden = @Hidden AND {WantSearch} LIKE @KeyWord ORDER BY {WantSearch} ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue($"@KeyWord", "%" + KeyWord + "%");
+                command.Parameters.AddWithValue($"@Hidden", 0);
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+        #endregion
+
     }
 }

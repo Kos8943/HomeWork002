@@ -82,6 +82,8 @@
     <Content Include="Drone_Detail_CreateData.aspx" />
     <Content Include="Drone_Fixed.aspx" />
     <Content Include="Drone_Fix_CreateData.aspx" />
+    <Content Include="Drone_UserList.aspx" />
+    <Content Include="Drone_UserList_Create.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Headder1.ascx" />
     <Content Include="Imgs\iconfinder_Safety01_928417.svg" />
@@ -134,6 +136,20 @@
     </Compile>
     <Compile Include="Drone_Fix_CreateData.aspx.designer.cs">
       <DependentUpon>Drone_Fix_CreateData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Drone_UserList.aspx.cs">
+      <DependentUpon>Drone_UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Drone_UserList.aspx.designer.cs">
+      <DependentUpon>Drone_UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Drone_UserList_Create.aspx.cs">
+      <DependentUpon>Drone_UserList_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Drone_UserList_Create.aspx.designer.cs">
+      <DependentUpon>Drone_UserList_Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
