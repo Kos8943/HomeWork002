@@ -79,6 +79,8 @@
     <Content Include="Bootstrap\js\bootstrap.min.js" />
     <Content Include="ChangePage.ascx" />
     <Content Include="Drone_Battery.aspx" />
+    <Content Include="Drone_Customer.aspx" />
+    <Content Include="Drone_Customer_Create.aspx" />
     <Content Include="Drone_Detail_CreateData.aspx" />
     <Content Include="Drone_Fixed.aspx" />
     <Content Include="Drone_Fix_CreateData.aspx" />
@@ -115,6 +117,20 @@
     </Compile>
     <Compile Include="Drone_Battery.aspx.designer.cs">
       <DependentUpon>Drone_Battery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Drone_Customer.aspx.cs">
+      <DependentUpon>Drone_Customer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Drone_Customer.aspx.designer.cs">
+      <DependentUpon>Drone_Customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Drone_Customer_Create.aspx.cs">
+      <DependentUpon>Drone_Customer_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Drone_Customer_Create.aspx.designer.cs">
+      <DependentUpon>Drone_Customer_Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="Drone_Detail_CreateData.aspx.cs">
       <DependentUpon>Drone_Detail_CreateData.aspx</DependentUpon>
