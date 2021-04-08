@@ -23,11 +23,11 @@ namespace HomeWork002
 
 
             //判定是否登入
-            bool Logined = LoginHelper.HasLogined();
-            if (!Logined)
-            {
-                Response.Redirect("LoginPage.aspx");
-            }
+            //bool Logined = LoginHelper.HasLogined();
+            //if (!Logined)
+            //{
+            //    Response.Redirect("LoginPage.aspx");
+            //}
 
             if (!IsPostBack)
             {
