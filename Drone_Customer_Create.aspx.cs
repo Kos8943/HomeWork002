@@ -14,7 +14,7 @@ namespace HomeWork002
         {
             string id = Request.QueryString["ID"];
 
-            DataTable dt = ConnectDB.ReadSingleDroneDetail(id);
+            DataTable dt = ConnectDB.ReadSingleCustomer(id);
 
             if (id == null)
             {
@@ -30,7 +30,7 @@ namespace HomeWork002
             this.TextPesticideDate.Text = dt.Rows[0]["Pesticide_Date"].ToString();
             this.TextFarmAddress.Text = dt.Rows[0]["Farm_Address"].ToString();
 
-            this.title.InnerText = "編輯植保機";
+            this.title.InnerText = "編輯客戶資料";
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -113,13 +113,13 @@ namespace HomeWork002
             {
                 if (id == null)
                 {
-                    //ConnectDB.InsertIntoDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
+                    ConnectDB.InsertIntoDroneCustomer(name, Tel, Address, Crop, Area, Pesticide, PesticideDate, Farm_Address);
                     Response.Redirect("Drone_Customer.aspx");
                 }
 
                 if (id != null)
                 {
-                    //ConnectDB.UpDateDroneDetail(name, Manufacturer, WeightLoad, Status, StopReason, Operator);
+                    ConnectDB.UpDateDroneCustomer(id, name, Tel, Address, Crop, Area, Pesticide, PesticideDate, Farm_Address);
                     Response.Redirect("Drone_Customer.aspx");
                 }
             }

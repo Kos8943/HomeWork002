@@ -84,12 +84,12 @@ namespace HomeWork002
 
             if ("DeleteItem" == cmdName)
             {
-                ConnectDB.DelectDroneDetail(cmdArgu);
+                ConnectDB.DelectCustomer(cmdArgu);
             }
 
             if ("UpDateItem" == cmdName)
             {
-                string targetUrl = "~/Drone_Detail_CreateData.aspx?ID=" + cmdArgu;
+                string targetUrl = "~/Drone_Customer_Create.aspx?ID=" + cmdArgu;
 
                 Response.Redirect(targetUrl);
             }
@@ -103,7 +103,7 @@ namespace HomeWork002
             int fistData = (Convert.ToInt32(Page) - 1) * 10 + 1;
             int LastData = Convert.ToInt32(Page) * 10;
 
-            DataTable dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
+            DataTable dt1 = ConnectDB.ReadTenDataDroneCustomer(fistData, LastData);
 
             //dt1 = ConnectDB.ReadTenDataDroneDetail(fistData, LastData);
             this.DroneDetailRepeater.DataSource = dt1;
@@ -121,7 +121,7 @@ namespace HomeWork002
             string WantSearch = this.DropDownListSearch.SelectedValue;
             string KeyWord = this.textKeyWord.Text;
 
-            DataTable dt = ConnectDB.KeyWordSearchDroneDetail(WantSearch, KeyWord);
+            DataTable dt = ConnectDB.KeyWordSearchDroneCustomer(WantSearch, KeyWord);
             this.DroneDetailRepeater.DataSource = dt;
             this.DroneDetailRepeater.DataBind();
         }
