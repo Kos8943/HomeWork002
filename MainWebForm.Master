@@ -152,7 +152,7 @@
                 <div class="tableList"><a href="Drone_Fixed.aspx">無人機維修紀錄</a></div>
                 <div class="tableList"><a href="Drone_Customer.aspx">客戶資料管理</a></div>
                 <div class="tableList"><a href="Drone_Battery.aspx">電池管理</a></div>
-                <div class="tableList"><a href="Drone_Detail.aspx">無人機出勤紀錄</a></div>
+                <div class="tableList"><a href="Drone_Destination.aspx">無人機出勤紀錄</a></div>
                 <div class="tableList"><a href="Drone_UserList.aspx">使用者管理</a></div>
             </div>
             <div class="tableArea">

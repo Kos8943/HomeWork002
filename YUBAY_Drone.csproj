@@ -81,6 +81,8 @@
     <Content Include="Drone_Battery.aspx" />
     <Content Include="Drone_Customer.aspx" />
     <Content Include="Drone_Customer_Create.aspx" />
+    <Content Include="Drone_Destination.aspx" />
+    <Content Include="Drone_Destination_Create.aspx" />
     <Content Include="Drone_Detail_CreateData.aspx" />
     <Content Include="Drone_Fixed.aspx" />
     <Content Include="Drone_Fix_CreateData.aspx" />
@@ -131,6 +133,20 @@
     </Compile>
     <Compile Include="Drone_Customer_Create.aspx.designer.cs">
       <DependentUpon>Drone_Customer_Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Drone_Destination.aspx.cs">
+      <DependentUpon>Drone_Destination.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Drone_Destination.aspx.designer.cs">
+      <DependentUpon>Drone_Destination.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Drone_Destination_Create.aspx.cs">
+      <DependentUpon>Drone_Destination_Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Drone_Destination_Create.aspx.designer.cs">
+      <DependentUpon>Drone_Destination_Create.aspx</DependentUpon>
     </Compile>
     <Compile Include="Drone_Detail_CreateData.aspx.cs">
       <DependentUpon>Drone_Detail_CreateData.aspx</DependentUpon>

@@ -2197,6 +2197,444 @@ namespace HomeWork002
                 //}
             }
         }
+        #endregion
+        #endregion
+
+
+
+
+
+        //出勤記錄相關Method
+        #region 出勤紀錄
+
+        #region 查詢出勤紀錄表
+        public static DataTable ReadDroneDestination()
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_Destination ORDER BY Sid ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                //command.Parameters.AddWithValue("@NumberCol", "2");
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 讀取10筆出勤紀錄
+        public static DataTable ReadTenDataDroneDestination(int firstData, int lastData)
+        {
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM 
+                                        (SELECT *,ROW_NUMBER() OVER (ORDER BY [Sid]) AS ROWSID FROM Drone_Destination)
+                                     a WHERE ROWSID >= @ROWSID1 AND ROWSID <= @ROWSID2;";
+
+            //string queryString = $@" SELECT * FROM Drone_Detail WHERE Sid >= @Sid and Sid <= @ID ORDER BY Sid ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@ROWSID1", firstData);
+                command.Parameters.AddWithValue("@ROWSID2", lastData);
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 刪除出勤紀錄
+        public static DataTable DelectDestination(string sid)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@"DELETE FROM Drone_Destination WHERE sid = @sid";
+            //DELETE FROM TestTable_1 WHERE ID
+
+
+
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //將值丟進相對應的位子
+                command.Parameters.AddWithValue("@sid", sid);
+
+
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    DataTable dt = new DataTable();
+
+                    dt.Load(reader);
+
+                    //受影響的資料筆數(沒有使用)
+                    //int totalChangRows = command.ExecuteNonQuery();
+                    //HttpContext.Current.Response.Write("Total chang" + totalChangRows + " Rows.");
+                    //Console.WriteLine("Total chang" + totalChangRows + " Rows.");
+
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    //HttpContext.Current.Response.Write(ex);
+                    //Console.WriteLine(ex);
+                    return null;
+                }
+
+            }
+        }
+        #endregion
+
+        #region 出勤紀錄關鍵字模糊查詢
+        public static DataTable KeyWordSearchDroneDestination(string WantSearch, string KeyWord)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_Destination  WHERE {WantSearch} LIKE @KeyWord ORDER BY {WantSearch} ASC;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue($"@KeyWord", "%" + KeyWord + "%");
+
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
+        #endregion
+
+        #region 新增出勤紀錄
+
+        public static DataTable InsertIntoDroneDestination(string Date, string Staff, string Drone_ID, string Battery_Count, string Cumstomer_Name, string Tel, string Address, string Remarks)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@"INSERT INTO Drone_Destination
+                                        (Date, Staff, Drone_ID, Battery_Count, Cumstomer_Name, Tel, Address, Remarks)
+                                    VALUES
+                                        (@Date, @Staff, @Drone_ID, @Battery_Count, @Cumstomer_Name, @Tel, @Address, @Remarks)";
+
+
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //將值丟進相對應的位子
+                command.Parameters.AddWithValue("@Date", Date);
+                command.Parameters.AddWithValue("@Staff", Staff);
+                command.Parameters.AddWithValue("@Drone_ID", Drone_ID);
+                command.Parameters.AddWithValue("@Battery_Count", Battery_Count);
+                command.Parameters.AddWithValue("@Cumstomer_Name", Cumstomer_Name);
+                command.Parameters.AddWithValue("@Tel", Tel);
+                command.Parameters.AddWithValue("@Address", Address);
+                command.Parameters.AddWithValue("@Remarks", Remarks);
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    DataTable dt = new DataTable();
+
+                    dt.Load(reader);
+
+                    //受影響的資料筆數(沒有使用)
+                    //int totalChangRows = command.ExecuteNonQuery();
+                    //Console.WriteLine("Total chang" + totalChangRows + " Rows.");
+
+                    return dt;
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    return null;
+                }
+
+            }
+        }
+        #endregion
+
+        #region 修改出勤紀錄
+        public static void UpDateDroneDestination(string sid, string Date, string Staff, string Drone_ID, string Battery_Count, string Cumstomer_Name, string Tel, string Address, string Remarks)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+
+            //使用的SQL語法
+            string queryString = $@"UPDATE Drone_Destination SET Date=@Date, Staff=@Staff, Drone_ID=@Drone_ID, Battery_Count=@Battery_Count, Cumstomer_Name=@Cumstomer_Name, Tel=@Tel, Address=@Address, Remarks=@Remarks WHERE sid=@sid";
+
+
+
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                //將值丟進相對應的位子
+                //command.Parameters.AddWithValue("@DroneDetail_ID", Sid);
+                command.Parameters.AddWithValue("@Date", Date);
+                command.Parameters.AddWithValue("@Staff", Staff);
+                command.Parameters.AddWithValue("@Drone_ID", Drone_ID);
+                command.Parameters.AddWithValue("@Battery_Count", Battery_Count);
+                command.Parameters.AddWithValue("@Cumstomer_Name", Cumstomer_Name);
+                command.Parameters.AddWithValue("@Tel", Tel);
+                command.Parameters.AddWithValue("@Address", Address);
+                command.Parameters.AddWithValue("@Remarks", Remarks);
+                command.Parameters.AddWithValue("@sid", sid);
+
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    //SqlDataReader reader = 
+                    command.ExecuteNonQuery();
+
+                    //DataTable dt = new DataTable();
+
+                    //dt.Load(reader);
+
+
+
+
+                    //受影響的資料筆數(沒有使用)
+                    //int totalChangRows = command.ExecuteNonQuery();
+                    //Console.WriteLine("Total chang" + totalChangRows + " Rows.");
+
+
+                    //return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+
+                    //return null;
+                }
+
+            }
+        }
+        #endregion
+
+        #region 讀取單筆出勤紀錄
+        public static DataTable ReadSingleDestination(string sid)
+        {
+
+            //建立連線資料庫的字串變數Catalog=Drone的Drone為資料庫名稱
+            string connectionString = "Data Source=localhost\\SQLExpress;Initial Catalog=Drone; Integrated Security=true";
+
+            //使用的SQL語法
+            string queryString = $@" SELECT * FROM Drone_Destination WHERE sid=@sid;";
+
+            //建立連線
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //轉譯成SQL看得懂的語法
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Parameters.AddWithValue("@sid", sid);
+
+                try
+                {
+                    //開始連線
+                    connection.Open();
+
+                    //從資料庫中讀取資料
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //在記憶體中創新的空表
+                    DataTable dt = new DataTable();
+
+                    //把值塞進空表
+                    dt.Load(reader);
+
+                    //foreach (DataRow dr in dt.Rows)
+                    //{
+                    //    Console.WriteLine(
+                    //        "\t{0}\t{1}\t{2}",
+                    //        dr["ID"],
+                    //        dr["Birthday"],
+                    //        dr["Name"]
+                    //    );
+                    //}
+
+                    //關閉資料庫連線
+                    reader.Close();
+
+                    //回傳dt
+                    return dt;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
+                //finally
+                //{
+                //    connection.Close();
+                //}
+            }
+        }
         #endregion 
         #endregion
     }
